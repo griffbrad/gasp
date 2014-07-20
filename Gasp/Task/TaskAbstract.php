@@ -1,22 +1,47 @@
 <?php
 
+/**
+ * Gasp
+ *
+ * @link https://github.com/griffbrad/gasp
+ */
+
 namespace Gasp\Task;
 
 use Gasp\Exception;
 use Gasp\Run;
 
+/**
+ * A simple abstract base class that can be used to implement some of the
+ * common task utility methods.
+ */
 abstract class TaskAbstract implements TaskInterface
 {
     /**
+     * The gasp Run object.
+     *
      * @var Run
      */
     protected $gasp;
 
+    /**
+     * Allow users to set multiple options on a task at once by passing
+     * in an array of key-value pairs.
+     *
+     * @param array $options
+     */
     public function __construct(array $options)
     {
         $this->setOptions($options);
     }
 
+    /**
+     * Pass the gasp Run object to the task so that it can be used to run
+     * other tasks, etc.
+     *
+     * @param Run $gasp
+     * @return $this|TaskInterface
+     */
     public function setGasp(Run $gasp)
     {
         $this->gasp = $gasp;
@@ -24,6 +49,12 @@ abstract class TaskAbstract implements TaskInterface
         return $this;
     }
 
+    /**
+     * Allow users to set multiple options on a task at once by passing
+     * in an array of key-value pairs.
+     *
+     * @param array $options
+     */
     public function setOptions(array $options)
     {
         foreach ($options as $name => $value) {
