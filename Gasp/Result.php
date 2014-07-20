@@ -126,9 +126,9 @@ class Result implements ResultInterface
     private function isValidStatus($status)
     {
         switch ($status) {
-            case self::SUCCESS :
-            case self::WARN :
-            case self::FAIL :
+            case self::SUCCESS:
+            case self::WARN:
+            case self::FAIL:
                 return true;
             default:
                 return false;

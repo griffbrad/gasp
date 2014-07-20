@@ -74,7 +74,7 @@ class CodeSniffer extends TaskAbstract
         /* @var $execResult Result */
         $execResult = $this->gasp->exec()->setCmd($cmd)->run();
 
-        if ($execResult->isFailure()) {
+        if ($execResult->isFailure() && !$execResult->getOutput()) {
             $taskResult
                 ->setStatus(Result::FAIL)
                 ->setMessage('Could not run phpcs command.');
@@ -122,15 +122,23 @@ class CodeSniffer extends TaskAbstract
             $output = array();
 
             foreach ($phpcsOutput['files'] as $file => $results) {
-                $output[] = $file;
-                $output[] = str_repeat('-', strlen($file));
-                $output[] = '';
+                if (count($results['messages'])) {
+                    $output[] = $file;
+                    $output[] = str_repeat('-', strlen($file));
+                    $output[] = '';
 
-                foreach ($results['messages'] as $message) {
-                    $output[] = $message;
+                    foreach ($results['messages'] as $message) {
+                        $output[] = sprintf(
+                            '%s: %s (Line %d, Column %d)',
+                            $message['type'],
+                            $message['message'],
+                            $message['line'],
+                            $message['column']
+                        );
+                    }
+
+                    $output[] = '';
                 }
-
-                $output[] = '';
             }
 
             $result->setOutput($output);

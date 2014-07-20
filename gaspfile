@@ -1,0 +1,15 @@
+<?php
+
+/* @var $gasp Gasp\Run */
+
+$gasp->sniff()
+    ->setPhpcs('./vendor/bin/phpcs')
+    ->setStandard('PSR2')
+    ->addPath('Gasp');
+
+$gasp->lint()
+    ->setPhp('/usr/bin/php')
+    ->addPath('Gasp');
+
+$gasp->task('qa', ['sniff', 'lint']);
+
