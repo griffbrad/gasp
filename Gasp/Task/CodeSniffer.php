@@ -176,20 +176,8 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
      */
     public function run()
     {
-        $this->validate();
-
-        $cmd = sprintf(
-            '%s --report=json --standard=%s --extensions=%s %s',
-            $this->phpcs,
-            escapeshellarg($this->standard),
-            escapeshellarg(implode(',', $this->extensions)),
-            implode(' ', array_map('escapeshellarg', $this->paths))
-        );
-
+        $execResult = $this->execPhpcs();
         $taskResult = $this->gasp->result();
-
-        /* @var $execResult Result */
-        $execResult = $this->gasp->exec()->setCmd($cmd)->run();
 
         if ($execResult->isFailure() && !$execResult->getOutput()) {
             $taskResult
@@ -208,6 +196,24 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
         }
 
         return $taskResult;
+    }
+
+    /**
+     * Run the phpcs command with the exec() task and return the result.
+     *
+     * @return Result
+     */
+    public function execPhpcs()
+    {
+        $cmd = sprintf(
+            '%s --report=json --standard=%s --extensions=%s %s',
+            $this->phpcs,
+            escapeshellarg($this->standard),
+            escapeshellarg(implode(',', $this->extensions)),
+            implode(' ', array_map('escapeshellarg', $this->paths))
+        );
+
+        return $this->gasp->exec()->setCmd($cmd)->run();
     }
 
     /**

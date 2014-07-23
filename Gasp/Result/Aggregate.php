@@ -48,6 +48,16 @@ class Aggregate implements ResultInterface
     }
 
     /**
+     * Get the array of results that have been added so far.
+     *
+     * @return array
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
      * Display all the added results.
      *
      * @return string
@@ -110,7 +120,7 @@ class Aggregate implements ResultInterface
     {
         /* @var $result ResultInterface */
         foreach ($this->results as $result) {
-            if (!$result->isFailure()) {
+            if ($result->isFailure()) {
                 return true;
             }
         }
