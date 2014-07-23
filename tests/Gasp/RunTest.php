@@ -20,6 +20,11 @@ class RunTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(__DIR__, $run->getWorkingDirectory());
     }
 
+    public function testResultOfGetcwdCallIsUsedForWorkingDirectoryByDefault()
+    {
+        $this->assertEquals(getcwd(), $this->run->getWorkingDirectory());
+    }
+
     /**
      * @expectedException \Gasp\Exception
      */

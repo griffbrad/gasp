@@ -59,7 +59,7 @@ class Result implements ResultInterface
      *
      * @var string
      */
-    private $output;
+    private $output = '';
 
     /**
      * Set multiple options on the result at once.

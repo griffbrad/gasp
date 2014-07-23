@@ -75,6 +75,8 @@ class Run
             throw new Exception("Working directory is not in fact a directory: {$this->workingDirectory}.");
         }
 
+        chdir($this->workingDirectory);
+
         $this->extend(new VagrantExtension());
     }
 

@@ -29,4 +29,11 @@ interface PathsInterface
      * @return PathsInterface
      */
     public function setPaths(array $paths);
+
+    /**
+     * Get all the paths assigned to this task.
+     *
+     * @return array
+     */
+    public function getPaths();
 }

@@ -100,6 +100,16 @@ class Lint extends TaskAbstract implements PathsInterface
     }
 
     /**
+     * Get all the paths assigned to this task.
+     *
+     * @return array
+     */
+    public function getPaths()
+    {
+        return $this->paths;
+    }
+
+    /**
      * Add a file extension to look for files in.
      *
      * @param $extension
@@ -107,7 +117,7 @@ class Lint extends TaskAbstract implements PathsInterface
      */
     public function addExtension($extension)
     {
-        $this->extensions[] = $extension;
+        $this->extensions[] = ltrim($extension, '.');
 
         return $this;
     }
@@ -120,9 +130,24 @@ class Lint extends TaskAbstract implements PathsInterface
      */
     public function setExtensions($extensions)
     {
-        $this->extensions = $extensions;
+        $this->extensions = array_map(
+            function ($extension) {
+                return ltrim($extension, '.');
+            },
+            $extensions
+        );
 
         return $this;
+    }
+
+    /**
+     * Get all the file extensions assigned to this task.
+     *
+     * @return array
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
     }
 
     /**
@@ -154,10 +179,10 @@ class Lint extends TaskAbstract implements PathsInterface
                     if ($execResult->isFailure()) {
                         $failures += 1;
 
-                        $output[] = $file;
+                        $output[] = (string) $file;
                         $output[] = str_repeat('-', strlen($file));
                         $output[] = '';
-                        $output[] = explode(PHP_EOL, $execResult->getOutput());
+                        $output[] = $execResult->getOutput();
                         $output[] = '';
                     }
                 }

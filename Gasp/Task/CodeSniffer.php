@@ -119,6 +119,16 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
     }
 
     /**
+     * Get all the paths assigned to this task.
+     *
+     * @return array
+     */
+    public function getPaths()
+    {
+        return $this->paths;
+    }
+
+    /**
      * Add a file extension to look for files in.
      *
      * @param $extension
@@ -147,6 +157,16 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
         );
 
         return $this;
+    }
+
+    /**
+     * Get all the file extensions assigned to this task.
+     *
+     * @return array
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
     }
 
     /**
