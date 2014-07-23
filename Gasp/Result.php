@@ -72,22 +72,13 @@ class Result implements ResultInterface
     }
 
     /**
-     * Display this result.  By default, only a summary will be displayed when
-     * the command is successful.
+     * Display this result.  Includes the summary and any command output.
      *
      * @return string
      */
     public function display()
     {
-        $output = $this->getSummary();
-
-        if ($this->isSuccess()) {
-            return $output;
-        }
-
-        $output .= $this->getOutput();
-
-        return $output;
+        return $this->getSummary() . $this->getOutput();
     }
 
     /**
@@ -187,7 +178,7 @@ class Result implements ResultInterface
     {
         $status = strtolower($status);
 
-        if ('failure' === $status) {
+        if ('failure' === $status || 'failed' === $status) {
             $status = 'fail';
         } elseif ('warning' === $status) {
             $status = 'warn';

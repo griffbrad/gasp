@@ -11,5 +11,10 @@ $gasp->lint()
     ->setPhp('/usr/bin/php')
     ->addPath('Gasp');
 
+$gasp->watch()
+    ->setClear(true)
+    ->addTask('qa', 'Gasp')
+    ->addTask('vagrant.sync', '.');
+
 $gasp->task('qa', ['sniff', 'lint']);
 

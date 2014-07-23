@@ -30,7 +30,7 @@ abstract class TaskAbstract implements TaskInterface
      *
      * @param array $options
      */
-    public function __construct(array $options)
+    public function __construct(array $options = array())
     {
         $this->setOptions($options);
     }

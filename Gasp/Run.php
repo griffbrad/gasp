@@ -9,6 +9,7 @@
 namespace Gasp;
 
 use Closure;
+use Gasp\Extension\Vagrant\Extension as VagrantExtension;
 use Gasp\Result\Aggregate as AggregateResult;
 use Gasp\Result\ResultInterface;
 use Gasp\Task\TaskInterface;
@@ -20,11 +21,16 @@ use Gasp\Task\TaskInterface;
 class Run
 {
     /**
-     * The class map used to locate and instantiate task objects.
+     * The class maps used to locate and instantiate task objects.
      *
      * @var ClassMap
      */
-    private $classMap;
+    private $classMaps = array();
+
+    /**
+     * @var array
+     */
+    private $classMapProxies = array();
 
     /**
      * The directory we're executing in.
@@ -32,6 +38,14 @@ class Run
      * @var string
      */
     private $workingDirectory;
+
+    /**
+     * $_SERVER vars.  Typically, you'll be using $_SERVER itself, but  during
+     * tests, we may override with setServerVars().
+     *
+     * @var array
+     */
+    private $serverVars;
 
     /**
      * Any tasks that have been setup.  Could be custom tasks, in which case the
@@ -50,8 +64,48 @@ class Run
      */
     public function __construct(ClassMap $classMap = null, $workingDirectory = null)
     {
-        $this->classMap         = ($classMap ?: new ClassMap());
-        $this->workingDirectory = ($workingDirectory ?: getcwd());
+        $this->workingDirectory     = rtrim($workingDirectory ?: getcwd(), '/');
+        $this->classMaps['default'] = ($classMap ?: new ClassMap());
+
+        if (!file_exists($this->workingDirectory)) {
+            throw new Exception("Working directory could not be found: {$this->workingDirectory}.");
+        }
+
+        if (!is_dir($this->workingDirectory)) {
+            throw new Exception("Working directory is not in fact a directory: {$this->workingDirectory}.");
+        }
+
+        $this->extend(new VagrantExtension());
+    }
+
+    /**
+     * Get the working directory (the directory from which gasp is being run).
+     *
+     * @return string
+     */
+    public function getWorkingDirectory()
+    {
+        return $this->workingDirectory;
+    }
+
+    /**
+     * Extend Gasp with the supplied extension.
+     *
+     * @param ExtensionInterface $extension
+     * @return $this
+     */
+    public function extend(ExtensionInterface $extension)
+    {
+        $extension->extend($this);
+
+        return $this;
+    }
+
+    public function classMap($name, ClassMap $classMap)
+    {
+        $this->classMaps[$name] = $classMap;
+
+        return $this;
     }
 
     /**
@@ -66,7 +120,7 @@ class Run
      */
     public function task($name, $definition)
     {
-        if ($definition instanceof Closure && !is_array($definition)) {
+        if (!$this->isValidTaskType($definition)) {
             throw new Exception('Custom tasks must be callbacks or arrays.');
         }
 
@@ -91,15 +145,49 @@ class Run
 
         require $gaspfile;
 
-        $name   = $this->getTaskName();
-        $task   = $this->getTask($name);
-        $result = $this->runTask($task);
+        $name   = $this->getSelectedTaskName();
+        $result = $this->runTaskByName($name);
 
         if (!$result instanceof ResultInterface) {
             throw new Exception('Tasks must return a result object.');
         }
 
         $this->displayOutput($result);
+    }
+
+    /**
+     * Look up the task associated with the supplied name and run it.
+     *
+     * @param string $name
+     * @return ResultInterface
+     */
+    public function runTaskByName($name)
+    {
+        return $this->runTask($this->getTaskByName($name));
+    }
+
+    /**
+     * Get the task matching the supplied name.  If no task has already been added
+     * for the name, we will fall back to looking in the class map.
+     *
+     * @param $name
+     * @return mixed
+     */
+    public function getTaskByName($name)
+    {
+        $name = strtolower($name);
+
+        if (isset($this->tasks[$name])) {
+            return $this->tasks[$name];
+        }
+
+        if (false === strpos($name, '.')) {
+            return $this->$name();
+        } else {
+            list($classMap, $name) = explode('.', $name);
+
+            return $this->$classMap()->$name();
+        }
     }
 
     /**
@@ -120,7 +208,7 @@ class Run
         } elseif ($task instanceof Closure) {
             return call_user_func($task);
         } elseif (is_string($task)) {
-            return $this->runTask($this->getTask($task));
+            return $this->runTaskByName($task);
         } elseif (is_array($task)) {
             $aggregate = $this->aggregate();
 
@@ -168,8 +256,8 @@ class Run
     }
 
     /**
-     * When calling an unknown method, we attempt to grab a task from the
-     * class map object.
+     * When calling an unknown method, we attempt to grab a task or class map
+     * matching the method name.
      *
      * @param string $method
      * @param array $args
@@ -179,13 +267,13 @@ class Run
     {
         $method = strtolower($method);
 
-        if (!isset($this->tasks[$method])) {
-            $task = $this->classMap->factory($method, $args);
-            $task->setGasp($this);
-            $this->tasks[$method] = $task;
-        }
+        if (!isset($this->classMaps[$method])) {
+            return $this->getClassMapProxy('default')->$method($args);
+        } else {
+            $options = (isset($args[0]) && is_array($args[0]) ? $args[0] : array());
 
-        return $this->tasks[$method];
+            return $this->getClassMapProxy($method, $options);
+        }
     }
 
     /**
@@ -196,17 +284,77 @@ class Run
      */
     public function findGaspfile()
     {
-        $path = $this->workingDirectory . '/gaspfile';
+        $validNames = array('gaspfile', 'Gaspfile', 'gaspfile.php', 'Gaspfile.php');
+        $gaspfile   = null;
 
-        if (!file_exists($path)) {
-            throw new Exception('Could not find gaspfile.');
+        foreach ($validNames as $name) {
+            $fullPath = $this->workingDirectory . '/' . $name;
+
+            if (file_exists($fullPath) && is_readable($fullPath)) {
+                $gaspfile = $fullPath;
+                break;
+            }
         }
 
-        if (!is_readable($path)) {
-            throw new Exception('Could not read gaspfile.');
+        if (null === $gaspfile) {
+            throw new Exception('Could not find or read gaspfile.');
         }
 
-        return $path;
+        return $gaspfile;
+    }
+
+    public function registerTaskInstance($name, TaskInterface $task)
+    {
+        $this->tasks[$name] = $task;
+
+        return $this;
+    }
+
+    /**
+     * Override the stock $_SERVER superglobal.  Typically only used in testing.
+     *
+     * @param array $serverVars
+     * @return $this
+     */
+    public function setServerVars(array $serverVars)
+    {
+        $this->serverVars = $serverVars;
+
+        return $this;
+    }
+
+    /**
+     * Get the $_SERVER vars.  Call this instead of accessing $_SERVER directly so
+     * that the vars can be replaced during testing.
+     *
+     * @return mixed
+     */
+    public function getServerVars()
+    {
+        if (null === $this->serverVars) {
+            return $_SERVER;
+        } else {
+            return $this->serverVars;
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param array $options
+     * @return ClassMapProxy
+     */
+    private function getClassMapProxy($name, array $options = array())
+    {
+        if (!isset($this->classMapProxies[$name])) {
+            $this->classMapProxies[$name] = new ClassMapProxy(
+                $this,
+                $name,
+                $this->classMaps[$name],
+                $options
+            );
+        }
+
+        return $this->classMapProxies[$name];
     }
 
     /**
@@ -215,10 +363,12 @@ class Run
      *
      * @return string
      */
-    private function getTaskName()
+    private function getSelectedTaskName()
     {
-        if (isset($_SERVER['argv'][1])) {
-            $name = $_SERVER['argv'][1];
+        $serverVars = $this->getServerVars();
+
+        if (isset($serverVars['argv'][1])) {
+            $name = $serverVars['argv'][1];
         } else {
             $name = 'default';
         }
@@ -227,21 +377,17 @@ class Run
     }
 
     /**
-     * Get the task matching the supplied name.  If no task has already been added
-     * for the name, we will fall back to looking in the class map.
+     * Ensure the supplied task is either a Closure, implements TaskInterface,
+     * or is an array or string.
      *
-     * @param $name
-     * @return mixed
-     * @throws Exception
+     * @param mixed $task
+     * @return bool
      */
-    private function getTask($name)
+    private function isValidTaskType($task)
     {
-        $name = strtolower($name);
-
-        if (!isset($this->tasks[$name]) && !$this->$name()) {
-            throw new Exception("No task with name '{$name}' defined.");
-        }
-
-        return $this->tasks[$name];
+        return $task instanceof Closure ||
+            $task instanceof TaskInterface ||
+            is_string($task) ||
+            is_array($task);
     }
 }

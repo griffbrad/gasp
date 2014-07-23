@@ -10,7 +10,6 @@ namespace Gasp;
 
 /**
  * This class displays a summary for a result, including its status and message.
- * This class may be enhanced to included console colors, etc.
  */
 class Summary
 {
@@ -33,6 +32,17 @@ class Summary
     );
 
     /**
+     * Bash console colors for the 3 statuses so they're easier to spot.
+     *
+     * @var array
+     */
+    private $colors = array(
+        Result::SUCCESS => array('set' => 32, 'unset' => 39),
+        Result::WARN    => array('set' => 33, 'unset' => 39),
+        Result::FAIL    => array('set' => 31, 'unset' => 39)
+    );
+
+    /**
      * Provide the result for which we need to display a summary.
      *
      * @param Result $result
@@ -49,10 +59,17 @@ class Summary
      */
     public function __toString()
     {
-        return sprintf(
-            "%s %s\n",
+        $message = sprintf(
+            "%s %s",
             $this->icons[$this->result->getStatus()],
             $this->result->getMessage()
+        );
+
+        return sprintf(
+            "\033[%sm%s\033[%sm" . PHP_EOL,
+            $this->colors[$this->result->getStatus()]['set'],
+            $message,
+            $this->colors[$this->result->getStatus()]['unset']
         );
     }
 }

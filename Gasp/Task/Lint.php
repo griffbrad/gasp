@@ -37,7 +37,7 @@ use RecursiveDirectoryIterator;
  * ./vendor/bin/gasp lint
  * </code>
  */
-class Lint extends TaskAbstract
+class Lint extends TaskAbstract implements PathsInterface
 {
     /**
      * The location of the PHP command.

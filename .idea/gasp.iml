@@ -8,9 +8,13 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/composer.phar" />
+          <root url="phar://$MODULE_DIR$/vendor/phpdocumentor/fileset/tests/data/test.phar" />
+          <root url="phar://$MODULE_DIR$/vendor/phpdocumentor/phpdocumentor/tests/data/test.phar" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/composer.phar" />
+          <root url="phar://$MODULE_DIR$/vendor/phpdocumentor/fileset/tests/data/test.phar" />
+          <root url="phar://$MODULE_DIR$/vendor/phpdocumentor/phpdocumentor/tests/data/test.phar" />
         </SOURCES>
       </library>
     </orderEntry>

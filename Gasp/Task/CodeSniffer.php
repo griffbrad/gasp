@@ -37,7 +37,7 @@ use Gasp\Result;
  * ./vendor/bin/gasp sniff
  * </code>
  */
-class CodeSniffer extends TaskAbstract
+class CodeSniffer extends TaskAbstract implements PathsInterface
 {
     /**
      * The location of the phpcs command.
