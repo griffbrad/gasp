@@ -41,6 +41,21 @@ class ClassMap
     );
 
     /**
+     * The Gasp\Run instance this class map was registered with.
+     *
+     * @var Run
+     */
+    private $gasp;
+
+    /**
+     * The name this class map was registered with on the associated Gasp\Run
+     * instance.
+     *
+     * @var string
+     */
+    private $name;
+
+    /**
      * Allow users to set multiple options on a class map at once by passing
      * in an array of key-value pairs.
      *
@@ -70,6 +85,56 @@ class ClassMap
         }
 
         return $this;
+    }
+
+    /**
+     * The name of this class map, as registered with the Gasp/Run instance.
+     *
+     * @param $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the Gasp\Run instance that can be instantiated tasks can be registered
+     * with.
+     *
+     * @param Run $gasp
+     * @return $this
+     */
+    public function setGasp(Run $gasp)
+    {
+        $this->gasp = $gasp;
+
+        return $this;
+    }
+
+    /**
+     * Handle undefined methods by attempting to instantiate the task matching the
+     * method name.
+     *
+     * @param string $method
+     * @param array $args
+     * @return mixed
+     */
+    public function __call($method, array $args)
+    {
+        $task = $this->factory($method, $args);
+
+        $task->setGasp($this->gasp);
+
+        if ('default' === $this->name) {
+            $this->gasp->registerTaskInstance($method, $task);
+        } else {
+            $this->gasp->registerTaskInstance($this->name . '.' . $method, $task);
+        }
+
+        return $task;
     }
 
     /**

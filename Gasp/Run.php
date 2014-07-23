@@ -27,11 +27,6 @@ class Run
     private $classMaps = array();
 
     /**
-     * @var array
-     */
-    private $classMapProxies = array();
-
-    /**
      * The directory we're executing in.
      *
      * @var string
@@ -63,8 +58,9 @@ class Run
      */
     public function __construct(ClassMap $classMap = null, $workingDirectory = null)
     {
-        $this->workingDirectory     = rtrim($workingDirectory ?: getcwd(), '/');
-        $this->classMaps['default'] = ($classMap ?: new ClassMap());
+        $this->classMap('default', ($classMap ?: new ClassMap()));
+
+        $this->workingDirectory = rtrim($workingDirectory ?: getcwd(), '/');
 
         if (!file_exists($this->workingDirectory)) {
             throw new Exception("Working directory could not be found: {$this->workingDirectory}.");
@@ -100,8 +96,19 @@ class Run
         return $this;
     }
 
+    /**
+     * Register a new class map with this gasp instance.
+     *
+     * @param $name
+     * @param ClassMap $classMap
+     * @return $this
+     */
     public function classMap($name, ClassMap $classMap)
     {
+        $classMap
+            ->setGasp($this)
+            ->setName($name);
+
         $this->classMaps[$name] = $classMap;
 
         return $this;
@@ -267,11 +274,18 @@ class Run
         $method = strtolower($method);
 
         if (!isset($this->classMaps[$method])) {
-            return $this->getClassMapProxy('default')->$method($args);
+            return $this->classMaps['default']->$method($args);
         } else {
             $options = (isset($args[0]) && is_array($args[0]) ? $args[0] : array());
 
-            return $this->getClassMapProxy($method, $options);
+            /* @var $map ClassMap */
+            $map = $this->classMaps[$method];
+
+            if (count($options)) {
+                $map->setOptions($options);
+            }
+
+            return $map;
         }
     }
 
@@ -335,25 +349,6 @@ class Run
         } else {
             return $this->serverVars;
         }
-    }
-
-    /**
-     * @param string $name
-     * @param array $options
-     * @return ClassMapProxy
-     */
-    private function getClassMapProxy($name, array $options = array())
-    {
-        if (!isset($this->classMapProxies[$name])) {
-            $this->classMapProxies[$name] = new ClassMapProxy(
-                $this,
-                $name,
-                $this->classMaps[$name],
-                $options
-            );
-        }
-
-        return $this->classMapProxies[$name];
     }
 
     /**
