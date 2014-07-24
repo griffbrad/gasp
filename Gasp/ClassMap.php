@@ -23,10 +23,11 @@ class ClassMap
      * @var array
      */
     protected $classes = array(
-        'exec'  => '\Gasp\Task\Exec',
-        'lint'  => '\Gasp\Task\Lint',
-        'sniff' => '\Gasp\Task\CodeSniffer',
-        'watch' => '\Gasp\Task\Watch'
+        'exec'    => '\Gasp\Task\Exec',
+        'lint'    => '\Gasp\Task\Lint',
+        'phpunit' => '\Gasp\Task\Phpunit',
+        'sniff'   => '\Gasp\Task\CodeSniffer',
+        'watch'   => '\Gasp\Task\Watch'
     );
 
     /**

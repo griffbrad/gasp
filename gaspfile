@@ -11,10 +11,13 @@ $gasp->lint()
     ->setPhp('/usr/bin/php')
     ->addPath('Gasp');
 
+$gasp->phpunit()
+    ->setPhpunit('./vendor/bin/phpunit')
+    ->setPath('tests')
+    ->setCoverageThreshold(80);
+
 $gasp->watch()
     ->setClear(true)
-    ->addTask('qa', 'Gasp')
-    ->addTask('vagrant.sync', '.');
+    ->addTask('qa', 'Gasp');
 
-$gasp->task('qa', ['sniff', 'lint']);
-
+$gasp->task('qa', ['phpunit', 'sniff', 'lint']);
