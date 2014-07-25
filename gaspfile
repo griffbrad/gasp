@@ -16,8 +16,9 @@ $gasp->phpunit()
     ->setPath('tests')
     ->setCoverageThreshold(80);
 
+
 $gasp->watch()
     ->setClear(true)
     ->addTask('qa', 'Gasp');
 
-$gasp->task('qa', ['phpunit', 'sniff', 'lint']);
+$gasp->task('qa', ['phpunit.runTests', 'sniff', 'lint']);

@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54e03120-130e-46f2-9005-a359416b4bf3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Task/Phpunit.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/AnalyzerInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/ClassMap.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Coverage.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Extension.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Log.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gasp/Extension/Phpunit/Task/RunTests.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Gasp/Task/Phpunit.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gasp/ClassMap.php" afterPath="$PROJECT_DIR$/Gasp/ClassMap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gasp/Run.php" afterPath="$PROJECT_DIR$/Gasp/Run.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gasp/Task/TaskAbstract.php" afterPath="$PROJECT_DIR$/Gasp/Task/TaskAbstract.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gasp/Task/TaskInterface.php" afterPath="$PROJECT_DIR$/Gasp/Task/TaskInterface.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gaspfile" afterPath="$PROJECT_DIR$/gaspfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -31,94 +41,62 @@
       <file leaf-file-name="gaspfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gaspfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="30" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+            <state line="18" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Phpunit.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Gasp/Task/Phpunit.php">
+      <file leaf-file-name="RunTests.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Task/RunTests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="284" column="0" selection-start="7487" selection-end="7487" vertical-scroll-proportion="0.24216028" vertical-offset="3982" max-vertical-offset="5160">
+            <state line="145" column="0" selection-start="3726" selection-end="3726" vertical-scroll-proportion="0.91656876" vertical-offset="1395" max-vertical-offset="2820">
               <folding>
                 <element signature="e#7#68#0" expanded="true" />
-                <element signature="e#92#111#0" expanded="true" />
-                <element signature="e#130#568#0" expanded="true" />
-                <element signature="e#610#715#0" expanded="true" />
-                <element signature="e#743#822#0" expanded="true" />
-                <element signature="e#847#1006#0" expanded="true" />
-                <element signature="e#1040#1152#0" expanded="true" />
-                <element signature="e#1190#1310#0" expanded="true" />
-                <element signature="e#1427#1539#0" expanded="true" />
-                <element signature="e#1656#1743#0" expanded="true" />
-                <element signature="e#2258#2448#0" expanded="true" />
-                <element signature="e#2735#2817#0" expanded="true" />
-                <element signature="e#4600#4745#0" expanded="true" />
+                <element signature="e#110#129#0" expanded="true" />
+                <element signature="e#353#791#0" expanded="true" />
+                <element signature="e#1055#1137#0" expanded="true" />
+                <element signature="e#2219#2364#0" expanded="true" />
+                <element signature="e#2979#3012#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lint.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gasp/Task/Lint.php">
+      <file leaf-file-name="Log.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Log.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
-              <folding>
-                <element signature="e#7#68#0" expanded="true" />
-                <element signature="e#1856#1943#0" expanded="true" />
-                <element signature="e#2651#2748#0" expanded="true" />
-              </folding>
+            <state line="23" column="4" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1950">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Coverage.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Coverage.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ClassMap.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gasp/ClassMap.php">
+        <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/ClassMap.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="5" selection-start="694" selection-end="694" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
+            <state line="138" column="19" selection-start="2896" selection-end="2896" vertical-scroll-proportion="0.0" vertical-offset="1335" max-vertical-offset="2265">
               <folding>
-                <element signature="e#7#68#0" expanded="true" />
-                <element signature="e#346#446#0" expanded="true" />
-                <element signature="e#701#949#0" expanded="true" />
-                <element signature="e#1043#1142#0" expanded="true" />
-                <element signature="e#1167#1299#0" expanded="true" />
-                <element signature="e#1324#1487#0" expanded="true" />
-                <element signature="e#1600#1763#0" expanded="true" />
-                <element signature="e#2154#2290#0" expanded="true" />
-                <element signature="e#2395#2553#0" expanded="true" />
-                <element signature="e#2662#2859#0" expanded="true" />
-                <element signature="e#3250#3441#0" expanded="true" />
-                <element signature="e#4039#4204#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Run.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gasp/Run.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="16" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5580">
-              <folding>
-                <element signature="e#7#68#0" expanded="true" />
-                <element signature="e#87#99#0" expanded="true" />
-                <element signature="e#1108#1281#0" expanded="true" />
-                <element signature="e#2122#2253#0" expanded="true" />
-                <element signature="e#2387#2536#0" expanded="true" />
-                <element signature="e#2756#3065#0" expanded="true" />
-                <element signature="e#3335#3405#0" expanded="true" />
-                <element signature="e#3911#4057#0" expanded="true" />
-                <element signature="e#4176#4386#0" expanded="true" />
-                <element signature="e#4787#5209#0" expanded="true" />
-                <element signature="e#5896#6029#0" expanded="true" />
-                <element signature="e#6139#6279#0" expanded="true" />
-                <element signature="e#6387#6561#0" expanded="true" />
-                <element signature="e#6649#6854#0" expanded="true" />
-                <element signature="e#7390#7529#0" expanded="true" />
-                <element signature="e#8238#8390#0" expanded="true" />
-                <element signature="e#8525#8700#0" expanded="true" />
-                <element signature="e#8890#9077#0" expanded="true" />
-                <element signature="e#9355#9531#0" expanded="true" />
+                <element signature="e#78#188#0" expanded="true" />
+                <element signature="e#231#320#0" expanded="true" />
+                <element signature="e#490#595#0" expanded="true" />
+                <element signature="e#623#702#0" expanded="true" />
+                <element signature="e#727#886#0" expanded="true" />
+                <element signature="e#920#1034#0" expanded="true" />
+                <element signature="e#1072#1192#0" expanded="true" />
+                <element signature="e#1309#1415#0" expanded="true" />
+                <element signature="e#1497#1609#0" expanded="true" />
+                <element signature="e#1726#1813#0" expanded="true" />
+                <element signature="e#2328#2518#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,7 +117,6 @@
       <list>
         <option value="$PROJECT_DIR$/Gasp/Exception.php" />
         <option value="$PROJECT_DIR$/Gasp/Result/ResultInterface.php" />
-        <option value="$PROJECT_DIR$/Gasp/Task/TaskInterface.php" />
         <option value="$PROJECT_DIR$/Gasp/Summary.php" />
         <option value="$PROJECT_DIR$/Gasp/Task/Watch.php" />
         <option value="$PROJECT_DIR$/Gasp/ClassMap/Vagrant.php" />
@@ -150,7 +127,6 @@
         <option value="$PROJECT_DIR$/tests/phpunit.xml" />
         <option value="$PROJECT_DIR$/tests/bootstrap.php" />
         <option value="$PROJECT_DIR$/tests/Gasp/ResultTest.php" />
-        <option value="$PROJECT_DIR$/Gasp/Task/TaskAbstract.php" />
         <option value="$PROJECT_DIR$/Gasp/Task/Dummy.php" />
         <option value="$PROJECT_DIR$/tests/Gasp/RunTest.php" />
         <option value="$PROJECT_DIR$/tests/Gasp/Task/FileTest.php" />
@@ -174,19 +150,27 @@
         <option value="$PROJECT_DIR$/tests/Gasp/Task/CodeSnifferTest.php" />
         <option value="$PROJECT_DIR$/tests/Gasp/Task/WatchTest.php" />
         <option value="$PROJECT_DIR$/Gasp/ClassMapProxy.php" />
-        <option value="$PROJECT_DIR$/Gasp/Run.php" />
-        <option value="$PROJECT_DIR$/Gasp/ClassMap.php" />
-        <option value="$PROJECT_DIR$/gaspfile" />
         <option value="$PROJECT_DIR$/Gasp/Task/Phpunit.php" />
+        <option value="$PROJECT_DIR$/Gasp/Run.php" />
+        <option value="$PROJECT_DIR$/Gasp/Task/TaskAbstract.php" />
+        <option value="$PROJECT_DIR$/Gasp/Task/TaskInterface.php" />
+        <option value="$PROJECT_DIR$/Gasp/ClassMap.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Extension.php" />
+        <option value="$PROJECT_DIR$/gaspfile" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/ClassMap.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Exception.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/LogFile.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/AnalyzerInterface.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Log.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Coverage.php" />
+        <option value="$PROJECT_DIR$/Gasp/Extension/Phpunit/Task/RunTests.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="207" />
-    <option name="y" value="102" />
-    <option name="width" value="2244" />
-    <option name="height" value="1219" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -315,7 +299,81 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Result" />
+              <option name="myItemId" value="Task" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Extension" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Phpunit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Extension" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Phpunit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Task" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gasp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Extension" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Phpunit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Analyzer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -334,6 +392,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Log.php" />
       <recent name="$PROJECT_DIR$/Gasp/Extension/Vagrant" />
     </key>
   </component>
@@ -380,7 +439,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="207" y="102" width="2244" height="1219" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -388,7 +447,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15106952" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -420,47 +479,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gaspfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Run.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="6" selection-start="1596" selection-end="1596" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="5190">
-          <folding>
-            <element signature="e#7#68#0" expanded="true" />
-            <element signature="e#87#99#0" expanded="true" />
-            <element signature="e#1108#1281#0" expanded="true" />
-            <element signature="e#2122#2253#0" expanded="true" />
-            <element signature="e#2387#2536#0" expanded="true" />
-            <element signature="e#2756#3065#0" expanded="true" />
-            <element signature="e#3335#3405#0" expanded="true" />
-            <element signature="e#3911#4057#0" expanded="true" />
-            <element signature="e#4176#4386#0" expanded="true" />
-            <element signature="e#4787#5209#0" expanded="true" />
-            <element signature="e#5896#6029#0" expanded="true" />
-            <element signature="e#6139#6279#0" expanded="true" />
-            <element signature="e#6387#6561#0" expanded="true" />
-            <element signature="e#6649#6854#0" expanded="true" />
-            <element signature="e#7390#7529#0" expanded="true" />
-            <element signature="e#8238#8390#0" expanded="true" />
-            <element signature="e#8525#8700#0" expanded="true" />
-            <element signature="e#8890#9077#0" expanded="true" />
-            <element signature="e#9355#9531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Task/Lint.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="0" selection-start="4119" selection-end="4119" vertical-scroll-proportion="0.0" vertical-offset="2835" max-vertical-offset="3435">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/Watch.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
@@ -488,16 +506,16 @@
           <folding>
             <element signature="e#7#68#0" expanded="true" />
             <element signature="e#346#446#0" expanded="true" />
-            <element signature="e#701#949#0" expanded="true" />
-            <element signature="e#1043#1142#0" expanded="true" />
-            <element signature="e#1167#1299#0" expanded="true" />
-            <element signature="e#1324#1487#0" expanded="true" />
-            <element signature="e#1600#1763#0" expanded="true" />
-            <element signature="e#2154#2290#0" expanded="true" />
-            <element signature="e#2395#2553#0" expanded="true" />
-            <element signature="e#2662#2859#0" expanded="true" />
-            <element signature="e#3250#3441#0" expanded="true" />
-            <element signature="e#4039#4204#0" expanded="true" />
+            <element signature="e#658#906#0" expanded="true" />
+            <element signature="e#1000#1099#0" expanded="true" />
+            <element signature="e#1124#1256#0" expanded="true" />
+            <element signature="e#1281#1444#0" expanded="true" />
+            <element signature="e#1557#1720#0" expanded="true" />
+            <element signature="e#2111#2247#0" expanded="true" />
+            <element signature="e#2352#2510#0" expanded="true" />
+            <element signature="e#2619#2816#0" expanded="true" />
+            <element signature="e#3248#3439#0" expanded="true" />
+            <element signature="e#4170#4335#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -505,14 +523,20 @@
     <entry file="file://$PROJECT_DIR$/Gasp/Task/PathsInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="0" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="570">
-          <folding />
+          <folding>
+            <element signature="e#376#523#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/Lint.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="201" column="0" selection-start="4463" selection-end="4463" vertical-scroll-proportion="0.0" vertical-offset="3015" max-vertical-offset="3435">
-          <folding />
+          <folding>
+            <element signature="e#7#68#0" expanded="true" />
+            <element signature="e#1856#1943#0" expanded="true" />
+            <element signature="e#2651#2748#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -525,19 +549,6 @@
             <element signature="e#2365#2452#0" expanded="true" />
             <element signature="e#3160#3257#0" expanded="true" />
             <element signature="e#4131#4244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Task/TaskInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="27" selection-start="576" selection-end="576" vertical-scroll-proportion="0.4710145" vertical-offset="0" max-vertical-offset="828">
-          <folding>
-            <element signature="e#7#68#0" expanded="false" />
-            <element signature="e#92#111#0" expanded="false" />
-            <element signature="e#127#394#0" expanded="false" />
-            <element signature="e#631#750#0" expanded="false" />
-            <element signature="e#783#933#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,9 +618,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/bootstrap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="34" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-          <folding />
-        </state>
+        <state line="2" column="34" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/ResultTest.php">
@@ -625,16 +634,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/find-gaspfile-tests/upper-g-with-php/Gaspfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/find-gaspfile-tests/lower-g-with-php/gaspfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/find-gaspfile-tests/upper-g-no-php/Gaspfile">
@@ -646,9 +651,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/find-gaspfile-tests/lower-g-no-php/gaspfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/Dummy.php">
@@ -662,9 +665,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/lint-test-files/some-invalid/valid-file.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="7" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/PathsInterface.php">
@@ -678,9 +679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/lint-test-files/all-valid/file.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="0" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="6" column="0" selection-start="0" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Result.php">
@@ -745,18 +744,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Task/TaskAbstract.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="1491" selection-end="1491" vertical-scroll-proportion="0.5749129" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/sniff-test-files/just-warnings/Warning.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="84" selection-start="166" selection-end="166" vertical-scroll-proportion="0.105726875" vertical-offset="0" max-vertical-offset="1135">
-          <folding />
-        </state>
+        <state line="8" column="84" selection-start="166" selection-end="166" vertical-scroll-proportion="0.105726875" vertical-offset="0" max-vertical-offset="1135" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/CodeSnifferTest.php">
@@ -774,23 +764,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/sniff-test-files/some-invalid/Valid.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="0" selection-end="91" vertical-scroll-proportion="0.14372823" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="0" selection-end="91" vertical-scroll-proportion="0.14372823" vertical-offset="0" max-vertical-offset="1148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/sniff-test-files/some-invalid/Invalid.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.1585903" vertical-offset="0" max-vertical-offset="1135">
-          <folding />
-        </state>
+        <state line="12" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.1585903" vertical-offset="0" max-vertical-offset="1135" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/sniff-test-files/all-valid/Valid.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="0" selection-end="91" vertical-scroll-proportion="0.039198607" vertical-offset="0" max-vertical-offset="1148">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="0" selection-end="91" vertical-scroll-proportion="0.039198607" vertical-offset="0" max-vertical-offset="1148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/Task/LintTest.php">
@@ -814,33 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Run.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="16" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5580">
-          <folding>
-            <element signature="e#7#68#0" expanded="true" />
-            <element signature="e#87#99#0" expanded="true" />
-            <element signature="e#1108#1281#0" expanded="true" />
-            <element signature="e#2122#2253#0" expanded="true" />
-            <element signature="e#2387#2536#0" expanded="true" />
-            <element signature="e#2756#3065#0" expanded="true" />
-            <element signature="e#3335#3405#0" expanded="true" />
-            <element signature="e#3911#4057#0" expanded="true" />
-            <element signature="e#4176#4386#0" expanded="true" />
-            <element signature="e#4787#5209#0" expanded="true" />
-            <element signature="e#5896#6029#0" expanded="true" />
-            <element signature="e#6139#6279#0" expanded="true" />
-            <element signature="e#6387#6561#0" expanded="true" />
-            <element signature="e#6649#6854#0" expanded="true" />
-            <element signature="e#7390#7529#0" expanded="true" />
-            <element signature="e#8238#8390#0" expanded="true" />
-            <element signature="e#8525#8700#0" expanded="true" />
-            <element signature="e#8890#9077#0" expanded="true" />
-            <element signature="e#9355#9531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/CodeSniffer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="195" column="8" selection-start="4089" selection-end="4089" vertical-scroll-proportion="-0.2412892" vertical-offset="2152" max-vertical-offset="3300">
@@ -854,26 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/ClassMap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="5" selection-start="694" selection-end="694" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
-          <folding>
-            <element signature="e#7#68#0" expanded="true" />
-            <element signature="e#346#446#0" expanded="true" />
-            <element signature="e#701#949#0" expanded="true" />
-            <element signature="e#1043#1142#0" expanded="true" />
-            <element signature="e#1167#1299#0" expanded="true" />
-            <element signature="e#1324#1487#0" expanded="true" />
-            <element signature="e#1600#1763#0" expanded="true" />
-            <element signature="e#2154#2290#0" expanded="true" />
-            <element signature="e#2395#2553#0" expanded="true" />
-            <element signature="e#2662#2859#0" expanded="true" />
-            <element signature="e#3250#3441#0" expanded="true" />
-            <element signature="e#4039#4204#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Gasp/RunTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="0" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.75783974" vertical-offset="0" max-vertical-offset="3495">
@@ -883,7 +820,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gasp/Task/Lint.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+        <state line="15" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.2416357" vertical-offset="0" max-vertical-offset="3030">
           <folding>
             <element signature="e#7#68#0" expanded="true" />
             <element signature="e#1856#1943#0" expanded="true" />
@@ -892,30 +829,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gaspfile">
+    <entry file="file://$PROJECT_DIR$/Gasp/Task/TaskInterface.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="30" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+        <state line="10" column="16" selection-start="108" selection-end="108" vertical-scroll-proportion="0.10575793" vertical-offset="0" max-vertical-offset="851">
+          <folding>
+            <element signature="e#444#604#0" expanded="true" />
+            <element signature="e#650#908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/ClassMap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="169" column="0" selection-start="4128" selection-end="4128" vertical-scroll-proportion="0.0" vertical-offset="2014" max-vertical-offset="2865">
+          <folding>
+            <element signature="e#7#68#0" expanded="true" />
+            <element signature="e#346#446#0" expanded="true" />
+            <element signature="e#658#906#0" expanded="true" />
+            <element signature="e#1000#1099#0" expanded="true" />
+            <element signature="e#1124#1256#0" expanded="true" />
+            <element signature="e#1281#1444#0" expanded="true" />
+            <element signature="e#1557#1720#0" expanded="true" />
+            <element signature="e#2111#2247#0" expanded="true" />
+            <element signature="e#2352#2510#0" expanded="true" />
+            <element signature="e#2619#2816#0" expanded="true" />
+            <element signature="e#3248#3439#0" expanded="true" />
+            <element signature="e#4170#4335#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Exception.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="118" selection-end="118" vertical-scroll-proportion="0.1268116" vertical-offset="0" max-vertical-offset="828">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gasp/Task/Phpunit.php">
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Extension.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="0" selection-start="7487" selection-end="7487" vertical-scroll-proportion="0.24216028" vertical-offset="3982" max-vertical-offset="5160">
+        <state line="19" column="0" selection-start="449" selection-end="449" vertical-scroll-proportion="0.3442029" vertical-offset="0" max-vertical-offset="828">
+          <folding>
+            <element signature="e#42#70#0" expanded="true" />
+            <element signature="e#239#390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Run.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="195" column="0" selection-start="4765" selection-end="4765" vertical-scroll-proportion="-2.6413043" vertical-offset="4857" max-vertical-offset="5685">
           <folding>
             <element signature="e#7#68#0" expanded="true" />
+            <element signature="e#87#99#0" expanded="true" />
+            <element signature="e#664#831#0" expanded="true" />
+            <element signature="e#1166#1339#0" expanded="true" />
+            <element signature="e#2009#2128#0" expanded="true" />
+            <element signature="e#2228#2359#0" expanded="true" />
+            <element signature="e#2493#2642#0" expanded="true" />
+            <element signature="e#2862#3171#0" expanded="true" />
+            <element signature="e#3441#3511#0" expanded="true" />
+            <element signature="e#4017#4163#0" expanded="true" />
+            <element signature="e#4282#4492#0" expanded="true" />
+            <element signature="e#4893#5315#0" expanded="true" />
+            <element signature="e#6002#6135#0" expanded="true" />
+            <element signature="e#6245#6385#0" expanded="true" />
+            <element signature="e#6493#6667#0" expanded="true" />
+            <element signature="e#6755#6960#0" expanded="true" />
+            <element signature="e#7496#7635#0" expanded="true" />
+            <element signature="e#8344#8496#0" expanded="true" />
+            <element signature="e#8631#8806#0" expanded="true" />
+            <element signature="e#8996#9183#0" expanded="true" />
+            <element signature="e#9461#9637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaspfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Task/TaskAbstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="0" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.65217394" vertical-offset="75" max-vertical-offset="1185">
+          <folding>
             <element signature="e#92#111#0" expanded="true" />
-            <element signature="e#130#568#0" expanded="true" />
-            <element signature="e#610#715#0" expanded="true" />
-            <element signature="e#743#822#0" expanded="true" />
-            <element signature="e#847#1006#0" expanded="true" />
-            <element signature="e#1040#1152#0" expanded="true" />
-            <element signature="e#1190#1310#0" expanded="true" />
-            <element signature="e#1427#1539#0" expanded="true" />
-            <element signature="e#1656#1743#0" expanded="true" />
-            <element signature="e#2258#2448#0" expanded="true" />
-            <element signature="e#2735#2817#0" expanded="true" />
-            <element signature="e#4600#4745#0" expanded="true" />
+            <element signature="e#408#499#0" expanded="true" />
+            <element signature="e#530#688#0" expanded="true" />
+            <element signature="e#1086#1344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/ClassMap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="19" selection-start="2896" selection-end="2896" vertical-scroll-proportion="0.0" vertical-offset="1335" max-vertical-offset="2265">
+          <folding>
+            <element signature="e#78#188#0" expanded="true" />
+            <element signature="e#231#320#0" expanded="true" />
+            <element signature="e#490#595#0" expanded="true" />
+            <element signature="e#623#702#0" expanded="true" />
+            <element signature="e#727#886#0" expanded="true" />
+            <element signature="e#920#1034#0" expanded="true" />
+            <element signature="e#1072#1192#0" expanded="true" />
+            <element signature="e#1309#1415#0" expanded="true" />
+            <element signature="e#1497#1609#0" expanded="true" />
+            <element signature="e#1726#1813#0" expanded="true" />
+            <element signature="e#2328#2518#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/AnalyzerInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="32" selection-start="150" selection-end="150" vertical-scroll-proportion="0.14101058" vertical-offset="0" max-vertical-offset="851">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="4" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Analyzer/Coverage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gasp/Extension/Phpunit/Task/RunTests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="0" selection-start="3726" selection-end="3726" vertical-scroll-proportion="0.91656876" vertical-offset="1395" max-vertical-offset="2820">
+          <folding>
+            <element signature="e#7#68#0" expanded="true" />
+            <element signature="e#110#129#0" expanded="true" />
+            <element signature="e#353#791#0" expanded="true" />
+            <element signature="e#1055#1137#0" expanded="true" />
+            <element signature="e#2219#2364#0" expanded="true" />
+            <element signature="e#2979#3012#0" expanded="true" />
           </folding>
         </state>
       </provider>

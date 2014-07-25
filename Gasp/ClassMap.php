@@ -25,7 +25,6 @@ class ClassMap
     protected $classes = array(
         'exec'    => '\Gasp\Task\Exec',
         'lint'    => '\Gasp\Task\Lint',
-        'phpunit' => '\Gasp\Task\Phpunit',
         'sniff'   => '\Gasp\Task\CodeSniffer',
         'watch'   => '\Gasp\Task\Watch'
     );
@@ -125,7 +124,8 @@ class ClassMap
      */
     public function __call($method, array $args)
     {
-        $task = $this->factory($method, $args);
+        $method = strtolower($method);
+        $task   = $this->factory($method, $args);
 
         $task->setGasp($this->gasp);
 
@@ -162,9 +162,13 @@ class ClassMap
             throw new Exception("Could not find task with name: {$name}.");
         }
 
-        $className = $this->classes[$name];
+        $className    = $this->classes[$name];
+        $taskInstance = new $className($options);
 
-        return new $className($options);
+        /* @var $taskInstance TaskInterface */
+        $taskInstance->setClassMap($this);
+
+        return $taskInstance;
     }
 
     /**

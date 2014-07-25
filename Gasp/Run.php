@@ -9,6 +9,7 @@
 namespace Gasp;
 
 use Closure;
+use Gasp\Extension\Phpunit\Extension as PhpunitExtension;
 use Gasp\Result\Aggregate as AggregateResult;
 use Gasp\Result\ResultInterface;
 use Gasp\Task\TaskInterface;
@@ -71,6 +72,8 @@ class Run
         }
 
         chdir($this->workingDirectory);
+
+        $this->extend(new PhpunitExtension());
     }
 
     /**

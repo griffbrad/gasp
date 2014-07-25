@@ -8,6 +8,7 @@
 
 namespace Gasp\Task;
 
+use Gasp\ClassMap;
 use Gasp\Exception;
 use Gasp\Run;
 
@@ -27,6 +28,16 @@ interface TaskInterface
      * @return TaskInterface
      */
     public function setGasp(Run $gasp);
+
+    /**
+     * Provide a reference to the class map that instantiated this task.  Useful
+     * when the class map has its own setters/getters for configuration of multiple
+     * nested tasks.
+     *
+     * @param ClassMap $classMap
+     * @return $this
+     */
+    public function setClassMap(ClassMap $classMap);
 
     /**
      * Run the task and return a ResultInterface object.
