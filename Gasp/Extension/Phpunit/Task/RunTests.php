@@ -60,7 +60,9 @@ class RunTests extends TaskAbstract
 
         /* @var $analyzer AnalyzerInterface */
         foreach ($this->analyzers as $name => $analyzer) {
-            $analyzer->setFile($cwd . '/.gasp-phpunit-' . $name . '-' . microtime(true));
+            $analyzer
+                ->setGasp($this->gasp)
+                ->setFile($cwd . '/.gasp-phpunit-' . $name . '-' . microtime(true));
         }
 
         $this->execCmd();
@@ -76,7 +78,8 @@ class RunTests extends TaskAbstract
         }
 
         $taskResult = $this->gasp->result()
-            ->setMessage($this->assembleMessage());
+            ->setMessage($this->assembleMessage())
+            ->setOutput($this->assembleOutput());
 
         if ($this->analyzersHaveFailure()) {
             $taskResult->setStatus(Result::FAIL);
@@ -154,6 +157,22 @@ class RunTests extends TaskAbstract
         }
 
         return implode(' ', $message);
+    }
+
+    protected function assembleOutput()
+    {
+        $output = [];
+
+        /* @var $analyzer AnalyzerInterface */
+        foreach ($this->analyzers as $analyzer) {
+            $analyzerOutput = $analyzer->getOutput();
+
+            if ($analyzerOutput) {
+                $output[] = $analyzerOutput;
+            }
+        }
+
+        return implode(PHP_EOL . PHP_EOL, $output);
     }
 
     protected function analyzersHaveFailure()

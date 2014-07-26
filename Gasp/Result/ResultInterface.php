@@ -8,6 +8,8 @@
 
 namespace Gasp\Result;
 
+use Gasp\Run;
+
 /**
  * This interface applies to both normal and aggregate results.
  */

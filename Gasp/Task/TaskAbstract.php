@@ -8,9 +8,9 @@
 
 namespace Gasp\Task;
 
-use Gasp\Exception;
 use Gasp\ClassMap;
 use Gasp\Run;
+use Gasp\SetOptions;
 
 /**
  * A simple abstract base class that can be used to implement some of the
@@ -18,6 +18,8 @@ use Gasp\Run;
  */
 abstract class TaskAbstract implements TaskInterface
 {
+    use SetOptions;
+
     /**
      * The gasp Run object.
      *
@@ -68,27 +70,6 @@ abstract class TaskAbstract implements TaskInterface
     public function setClassMap(ClassMap $classMap)
     {
         $this->classMap = $classMap;
-
-        return $this;
-    }
-
-    /**
-     * Allow users to set multiple options on a task at once by passing
-     * in an array of key-value pairs.
-     *
-     * @param array $options
-     */
-    public function setOptions(array $options)
-    {
-        foreach ($options as $name => $value) {
-            $setter = 'set' . ucfirst($name);
-
-            if (!method_exists($this, $setter)) {
-                throw new Exception("Option '{$name}' does not exist.");
-            } else {
-                $this->$setter($value);
-            }
-        }
 
         return $this;
     }

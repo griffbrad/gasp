@@ -9,6 +9,7 @@
 namespace Gasp\Result;
 
 use Gasp\Result;
+use Gasp\Run;
 
 /**
  * This class allows you to bundle up the results of several tasks.  Just
@@ -22,6 +23,36 @@ class Aggregate implements ResultInterface
      * @var array
      */
     private $results = array();
+
+    /**
+     * The gasp instance that created this result.
+     *
+     * @var Run
+     */
+    private $gasp;
+
+    /**
+     * Supply a reference to the gasp instance that created this result.
+     *
+     * @param Run $gasp
+     * @return $this
+     */
+    public function setGasp(Run $gasp)
+    {
+        $this->gasp = $gasp;
+
+        return $this;
+    }
+
+    /**
+     * Return the instance of gasp that create the result.
+     *
+     * @return Run
+     */
+    public function getGasp()
+    {
+        return $this->gasp;
+    }
 
     /**
      * Just a shortcut to addResult().

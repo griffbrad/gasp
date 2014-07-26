@@ -6,7 +6,9 @@
  * @link https://github.com/griffbrad/gasp
  */
 
-namespace Gasp;
+namespace Gasp\Render;
+
+use Gasp\Result;
 
 /**
  * This class displays a summary for a result, including its status and message.
@@ -65,11 +67,12 @@ class Summary
             $this->result->getMessage()
         );
 
-        return sprintf(
-            "\033[%sm%s\033[%sm" . PHP_EOL,
-            $this->colors[$this->result->getStatus()]['set'],
-            $message,
-            $this->colors[$this->result->getStatus()]['unset']
-        );
+        $color    = $this->colors[$this->result->getStatus()];
+        $terminal = $this->result->getTerminal();
+
+        return $terminal->token("\033[{$color['set']}m") .
+            $message .
+            $terminal->token("\033[{$color['unset']}m") .
+            PHP_EOL;
     }
 }

@@ -8,7 +8,9 @@
 
 namespace Gasp;
 
+use Gasp\Render\Summary;
 use Gasp\Result\ResultInterface;
+use Gasp\Terminal;
 
 /**
  * This class should be used when returning the results of a single task.
@@ -17,6 +19,8 @@ use Gasp\Result\ResultInterface;
  */
 class Result implements ResultInterface
 {
+    use SetOptions;
+
     /**
      * Use this status when the task succeeds.
      *
@@ -46,6 +50,14 @@ class Result implements ResultInterface
      * @var string
      */
     private $message = '<no message available>';
+
+    /**
+     * A terminal instance that can be used for special output when running
+     * interactively.
+     *
+     * @var Terminal
+     */
+    private $terminal;
 
     /**
      * The status of the task after execution.
@@ -82,26 +94,30 @@ class Result implements ResultInterface
     }
 
     /**
-     * Set multiple options on this result at once rather than calling
-     * individual setter methods for each option.
+     * Set the terminal instance that can be used for special output formatting.
      *
-     * @param array $options
+     * @param Terminal $terminal
      * @return $this
-     * @throws Exception
      */
-    public function setOptions(array $options)
+    public function setTerminal(Terminal $terminal)
     {
-        foreach ($options as $name => $value) {
-            $setter = 'set' . ucfirst($name);
-
-            if (!method_exists($this, $setter)) {
-                throw new Exception("Option '{$name}' does not exist.");
-            } else {
-                $this->$setter($value);
-            }
-        }
+        $this->terminal = $terminal;
 
         return $this;
+    }
+
+    /**
+     * Get terminal instance for special formatting.
+     *
+     * @return Terminal
+     */
+    public function getTerminal()
+    {
+        if (!$this->terminal) {
+            $this->terminal = new Terminal();
+        }
+
+        return $this->terminal;
     }
 
     /**

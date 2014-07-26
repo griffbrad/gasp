@@ -52,6 +52,14 @@ class Run
     private $tasks = array();
 
     /**
+     * Used to track information about the terminal session and assist with
+     * specialized output (e.g. colors, underlines, etc.).
+     *
+     * @var Terminal
+     */
+    private $terminal;
+
+    /**
      * Optionally supply a custom class map and working directory for this runner.
      *
      * @param ClassMap $classMap
@@ -62,6 +70,7 @@ class Run
         $this->classMap('default', ($classMap ?: new ClassMap()));
 
         $this->workingDirectory = rtrim($workingDirectory ?: getcwd(), '/');
+        $this->terminal         = new Terminal();
 
         if (!file_exists($this->workingDirectory)) {
             throw new Exception("Working directory could not be found: {$this->workingDirectory}.");
@@ -84,6 +93,16 @@ class Run
     public function getWorkingDirectory()
     {
         return $this->workingDirectory;
+    }
+
+    /**
+     * Get the terminal object to perform custom output formatting, etc.
+     *
+     * @return Terminal
+     */
+    public function terminal()
+    {
+        return $this->terminal;
     }
 
     /**
@@ -250,7 +269,9 @@ class Run
      */
     public function result(array $options = array())
     {
-        return new Result($options);
+        $result = new Result($options);
+        $result->setTerminal($this->terminal);
+        return $result;
     }
 
     /**

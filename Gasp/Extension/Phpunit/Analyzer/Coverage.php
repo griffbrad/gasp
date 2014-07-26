@@ -2,19 +2,34 @@
 
 namespace Gasp\Extension\Phpunit\Analyzer;
 
+use Gasp\Extension\Phpunit\Analyzer\Coverage\OffendingClass;
+use Gasp\Render\Table;
+use Gasp\Run;
+
 class Coverage implements AnalyzerInterface
 {
+    private $gasp;
+
     private $file;
 
     private $threshold;
 
     private $coverage;
 
-    private $badClasses = array();
+    private $offendingClasses = array();
+
+    public function setGasp(Run $gasp)
+    {
+        $this->gasp = $gasp;
+
+        return $this;
+    }
 
     public function setFile($file)
     {
         $this->file = $file;
+
+        return $this;
     }
 
     public function deleteFile()
@@ -46,8 +61,8 @@ class Coverage implements AnalyzerInterface
             return;
         }
 
-        // Reset badClasses in case analyze is called multiple times
-        $this->badClasses = array();
+        // Reset offendingClasses in case analyze is called multiple times
+        $this->offendingClasses = array();
 
         $results  = simplexml_load_file($this->file);
         $classes  = $results->xpath('/coverage/project/package/file/class');
@@ -65,8 +80,15 @@ class Coverage implements AnalyzerInterface
 
             $coverage[] = $classCoverage;
 
-            if ($this->isBeneathThreshold($classCoverage)) {
-                $out['badClasses'][] = $class['namespace'] . '\\' . $class['name'];
+            if ($totalStatements && $this->isBeneathThreshold($classCoverage)) {
+                $this->offendingClasses[] = new OffendingClass(
+                    array(
+                        'className'         => $class['namespace'] . '\\' . $class['name'],
+                        'totalStatements'   => $totalStatements,
+                        'coveredStatements' => $coveredStatements,
+                        'coverage'          => $classCoverage
+                    )
+                );
             }
         }
 
@@ -94,13 +116,59 @@ class Coverage implements AnalyzerInterface
             return 'Could not calculate coverage because xdebug is not enabled.';
         } elseif ($this->isBeneathThreshold($this->coverage)) {
             return sprintf(
-                'Covered only %d%% of statements.  %d%% needed.',
-                number_format($this->coverage * 100, 2),
-                number_format($this->threshold * 100, 2)
+                'Covered only %s of statements.  %s needed.',
+                $this->formatPercentage($this->coverage),
+                $this->formatPercentage($this->threshold)
             );
         } else {
             return sprintf('Covered %d%% of statements.', number_format($this->coverage * 100, 2));
         }
+    }
+
+    public function getOutput()
+    {
+        $table = new Table();
+
+        $table->setHeaders(['Classes lacking sufficient coverage', 'Coverage', 'Statements']);
+
+        /* @var $class OffendingClass */
+        foreach ($this->getSortedOffendingClasses() as $class) {
+            $table->addRow(
+                array(
+                    $class->getClassName(),
+                    $this->formatPercentage($class->getCoverage()),
+                    $class->getTotalStatements()
+                )
+            );
+        }
+
+        return $table->render();
+    }
+
+    protected function getSortedOffendingClasses()
+    {
+        $classes = $this->offendingClasses;
+
+        usort(
+            $classes,
+            function ($a, $b) {
+                /* @var $a OffendingClass */
+                /* @var $b OffendingClass */
+
+                if ($a->getWeightedScore() === $b->getWeightedScore()) {
+                    return 0;
+                }
+
+                return ($a->getWeightedScore() < $b->getWeightedScore()) ? 1 : -1;
+            }
+        );
+
+        return $classes;
+    }
+
+    protected function formatPercentage($value)
+    {
+        return preg_replace('/\.00$/', '', number_format($value * 100, 2)) . '%';
     }
 
     protected function hasXdebug()

@@ -8,6 +8,7 @@
 
 namespace Gasp;
 
+use Gasp\SetOptions;
 use Gasp\Task\TaskInterface;
 
 /**
@@ -17,6 +18,8 @@ use Gasp\Task\TaskInterface;
  */
 class ClassMap
 {
+    use SetOptions;
+
     /**
      * The task classes currently registered in this class map.
      *
@@ -64,27 +67,6 @@ class ClassMap
     public function __construct(array $options = array())
     {
         $this->setOptions($options);
-    }
-
-    /**
-     * Allow users to set multiple options on a class map at once by passing
-     * in an array of key-value pairs.
-     *
-     * @param array $options
-     */
-    public function setOptions(array $options)
-    {
-        foreach ($options as $name => $value) {
-            $setter = 'set' . ucfirst($name);
-
-            if (!method_exists($this, $setter)) {
-                throw new Exception("Option '{$name}' does not exist.");
-            } else {
-                $this->$setter($value);
-            }
-        }
-
-        return $this;
     }
 
     /**
