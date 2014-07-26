@@ -60,9 +60,7 @@ class RunTests extends TaskAbstract
 
         /* @var $analyzer AnalyzerInterface */
         foreach ($this->analyzers as $name => $analyzer) {
-            $analyzer
-                ->setGasp($this->gasp)
-                ->setFile($cwd . '/.gasp-phpunit-' . $name . '-' . microtime(true));
+            $analyzer->setFile($cwd . '/.gasp-phpunit-' . $name . '-' . microtime(true));
         }
 
         $this->execCmd();
@@ -165,7 +163,7 @@ class RunTests extends TaskAbstract
 
         /* @var $analyzer AnalyzerInterface */
         foreach ($this->analyzers as $analyzer) {
-            $analyzerOutput = $analyzer->getOutput();
+            $analyzerOutput = $analyzer->getOutput($this->gasp->terminal());
 
             if ($analyzerOutput) {
                 $output[] = $analyzerOutput;

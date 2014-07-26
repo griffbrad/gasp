@@ -1,0 +1,68 @@
+{
+    "event": "suiteStart",
+    "suite": "ExampleTest",
+    "tests": 3
+}{
+    "event": "testStart",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testFalseIsTrue"
+}{
+    "event": "test",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testFalseIsTrue",
+    "status": "fail",
+    "time": 0.0062410831451416,
+    "trace": [
+        {
+            "file": "\/delta\/gasp\/ExampleMixed.php",
+            "line": 7,
+            "function": "assertTrue",
+            "class": "PHPUnit_Framework_Assert",
+            "type": "::",
+            "args": [
+                false
+            ]
+        }
+    ],
+    "message": "Failed asserting that false is true.",
+    "output": ""
+}{
+    "event": "testStart",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testSkippedTest"
+}{
+    "event": "test",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testSkippedTest",
+    "status": "error",
+    "time": 0.0017988681793213,
+    "trace": [
+        {
+            "file": "\/delta\/gasp\/ExampleMixed.php",
+            "line": 12,
+            "function": "markTestSkipped",
+            "class": "PHPUnit_Framework_Assert",
+            "type": "::",
+            "args": [
+                "SKIPPED_TEST_MESSAGE"
+            ]
+        }
+    ],
+    "message": "Skipped Test: SKIPPED_TEST_MESSAGE",
+    "output": ""
+}{
+    "event": "testStart",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testPassingTest"
+}{
+    "event": "test",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testPassingTest",
+    "status": "pass",
+    "time": 0.0007319450378418,
+    "trace": [
+
+    ],
+    "message": "",
+    "output": ""
+}

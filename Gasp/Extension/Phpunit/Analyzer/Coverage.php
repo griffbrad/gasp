@@ -4,12 +4,10 @@ namespace Gasp\Extension\Phpunit\Analyzer;
 
 use Gasp\Extension\Phpunit\Analyzer\Coverage\OffendingClass;
 use Gasp\Render\Table;
-use Gasp\Run;
+use Gasp\Terminal;
 
 class Coverage implements AnalyzerInterface
 {
-    private $gasp;
-
     private $file;
 
     private $threshold;
@@ -17,13 +15,6 @@ class Coverage implements AnalyzerInterface
     private $coverage;
 
     private $offendingClasses = array();
-
-    public function setGasp(Run $gasp)
-    {
-        $this->gasp = $gasp;
-
-        return $this;
-    }
 
     public function setFile($file)
     {
@@ -125,7 +116,7 @@ class Coverage implements AnalyzerInterface
         }
     }
 
-    public function getOutput()
+    public function getOutput(Terminal $terminal)
     {
         $table = new Table();
 

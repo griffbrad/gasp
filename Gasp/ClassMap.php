@@ -8,7 +8,6 @@
 
 namespace Gasp;
 
-use Gasp\SetOptions;
 use Gasp\Task\TaskInterface;
 
 /**
@@ -106,6 +105,10 @@ class ClassMap
      */
     public function __call($method, array $args)
     {
+        if (!$this->gasp) {
+            throw new Exception('Must set a gasp instance before creating tasks.');
+        }
+
         $method = strtolower($method);
         $task   = $this->factory($method, $args);
 

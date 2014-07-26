@@ -1,0 +1,29 @@
+{
+    "event": "suiteStart",
+    "suite": "ExampleTest",
+    "tests": 1
+}{
+    "event": "testStart",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testFalseIsTrue"
+}{
+    "event": "test",
+    "suite": "ExampleTest",
+    "test": "ExampleTest::testFalseIsTrue",
+    "status": "fail",
+    "time": 0.0050768852233887,
+    "trace": [
+        {
+            "file": "\/delta\/gasp\/ExampleFail.php",
+            "line": 7,
+            "function": "assertTrue",
+            "class": "PHPUnit_Framework_Assert",
+            "type": "::",
+            "args": [
+                false
+            ]
+        }
+    ],
+    "message": "Failed asserting that false is true.",
+    "output": ""
+}

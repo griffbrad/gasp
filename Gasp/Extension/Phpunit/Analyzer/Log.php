@@ -2,23 +2,17 @@
 
 namespace Gasp\Extension\Phpunit\Analyzer;
 
+use Gasp\Exception;
 use Gasp\Extension\Phpunit\Analyzer\Log\Test;
 use Gasp\Render\Header;
 use Gasp\Render\Table;
-use Gasp\Run;
+use Gasp\Terminal;
 
 class Log implements AnalyzerInterface
 {
-    /**
-     * @var Run
-     */
-    private $gasp;
-
     private $file;
 
     private $testCount = 0;
-
-    private $log = array();
 
     private $failedTests = array();
 
@@ -37,13 +31,6 @@ class Log implements AnalyzerInterface
     public function getSkippedCount()
     {
         return count($this->skippedTests);
-    }
-
-    public function setGasp(Run $gasp)
-    {
-        $this->gasp = $gasp;
-
-        return $this;
     }
 
     public function setFile($file)
@@ -97,8 +84,6 @@ class Log implements AnalyzerInterface
                 }
             }
         }
-
-        $this->log = $results;
     }
 
     public function isSuccess()
@@ -127,10 +112,10 @@ class Log implements AnalyzerInterface
         }
     }
 
-    public function getOutput()
+    public function getOutput(Terminal $terminal)
     {
         $output = [];
-        $header = new Header($this->gasp->terminal());
+        $header = new Header($terminal);
 
         if (count($this->failedTests)) {
             $failedOutput = [];
@@ -208,10 +193,16 @@ class Log implements AnalyzerInterface
 
     private function parseJsonData()
     {
-        return json_decode(
+        $data = @json_decode(
             '[' . str_replace('}{', '},{', file_get_contents($this->file)) . ']',
             true
         );
+
+        if (!$data) {
+            throw new Exception('Could not parse phpunit JSON log.');
+        }
+
+        return $data;
     }
 
     private function testWasSkipped(array $logEvent)

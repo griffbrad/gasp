@@ -2,16 +2,10 @@
 
 namespace Gasp\Extension\Phpunit\Analyzer;
 
-use Gasp\Run;
+use Gasp\Terminal;
 
 interface AnalyzerInterface
 {
-    /**
-     * @param Run $gasp
-     * @return AnalyzerInterface
-     */
-    public function setGasp(Run $gasp);
-
     public function setFile($file);
 
     public function deleteFile();
@@ -20,7 +14,7 @@ interface AnalyzerInterface
 
     public function analyze();
 
-    public function getOutput();
+    public function getOutput(Terminal $terminal);
 
     public function getMessage();
 
