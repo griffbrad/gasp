@@ -6,7 +6,7 @@
  * @link https://github.com/griffbrad/gasp
  */
 
-namespace Gasp\Extension\Phpunit;
+namespace Gasp\Extension\Ssh;
 
 use Gasp\Exception as CoreException;
 

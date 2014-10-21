@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Gasp
+ *
+ * @link https://github.com/griffbrad/gasp
+ */
+
 namespace Gasp\Extension\Phpunit\Analyzer;
 
 use Gasp\Extension\Phpunit\Analyzer\Coverage\OffendingClass;

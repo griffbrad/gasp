@@ -16,9 +16,37 @@ $gasp->phpunit()
     ->setPath('tests')
     ->setCoverageThreshold(80);
 
-
 $gasp->watch()
     ->setClear(true)
     ->addTask('qa', 'Gasp');
 
-$gasp->task('qa', ['phpunit.runTests', 'sniff', 'lint']);
+$gasp->ssh()
+    ->setSsh('/usr/bin/ssh')
+    ->setUsername('alacrity')
+    ->setHost('staging.deltasys.com')
+    ->setPrivateKey('~/.ssh/id_rsa');
+
+$gasp->task(
+    'install',
+    function ($result) use ($gasp) {
+        /* @var $result \Gasp\Result\Aggregate */
+
+        $result->add(
+            $gasp->ssh()->exec()
+                ->setCmd('ls')
+                ->run()
+        );
+
+        $result->add(
+            $gasp->ssh()->rsync()
+                ->setRsync('/usr/bin/rsync')
+                ->setLocalPath('.')
+                ->setRemotePath('/tmp/gasp')
+                ->run()
+        );
+
+        return $result;
+    }
+);
+
+$gasp->task('qa', ['phpunit', 'sniff', 'lint']);

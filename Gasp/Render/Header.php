@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Gasp
+ *
+ * @link https://github.com/griffbrad/gasp
+ */
+
 namespace Gasp\Render;
 
 use Gasp\Terminal;

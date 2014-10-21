@@ -10,6 +10,7 @@ namespace Gasp;
 
 use Closure;
 use Gasp\Extension\Phpunit\Extension as PhpunitExtension;
+use Gasp\Extension\Ssh\Extension as SshExtension;
 use Gasp\Result\Aggregate as AggregateResult;
 use Gasp\Result\ResultInterface;
 use Gasp\Task\TaskInterface;
@@ -82,7 +83,9 @@ class Run
 
         chdir($this->workingDirectory);
 
-        $this->extend(new PhpunitExtension());
+        $this
+            ->extend(new PhpunitExtension())
+            ->extend(new SshExtension());
     }
 
     /**
@@ -177,7 +180,7 @@ class Run
         $result = $this->runTaskByName($name);
 
         if (!$result instanceof ResultInterface) {
-            throw new Exception('Tasks must return a result object.');
+            throw new Exception("Tasks must return a result object. ({$name})");
         }
 
         $this->displayOutput($result);
@@ -234,7 +237,7 @@ class Run
             $task->validate();
             return $task->run();
         } elseif ($task instanceof Closure) {
-            return call_user_func($task);
+            return call_user_func($task, $this->aggregate());
         } elseif (is_string($task)) {
             return $this->runTaskByName($task);
         } elseif (is_array($task)) {

@@ -10,6 +10,7 @@ namespace Gasp\Task;
 
 use Gasp\Exception;
 use Gasp\Result;
+use Gasp\Validate;
 
 /**
  * Use PHP_CodeSniffer to check the style of your PHP code.  To use this command,
@@ -224,17 +225,7 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
      */
     public function validate()
     {
-        if (!$this->phpcs) {
-            throw new Exception('No phpcs command defined.');
-        }
-
-        if (!file_exists($this->phpcs)) {
-            throw new Exception("phpcs command not found at: {$this->phpcs}");
-        }
-
-        if (!is_executable($this->phpcs)) {
-            throw new Exception('phpcs command is not executable.');
-        }
+        Validate::checkExecutable($this->phpcs, '\Gasp\Exception');
 
         if (!count($this->paths)) {
             throw new Exception('Cannot run sniff task without any paths defined.');

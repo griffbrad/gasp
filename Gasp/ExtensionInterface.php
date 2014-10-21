@@ -4,5 +4,5 @@ namespace Gasp;
 
 interface ExtensionInterface
 {
-    public function extend(Run $gulp);
+    public function extend(Run $gasp);
 }

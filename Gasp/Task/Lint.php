@@ -10,6 +10,7 @@ namespace Gasp\Task;
 
 use Gasp\Exception;
 use Gasp\Result;
+use Gasp\Validate;
 use RecursiveDirectoryIterator;
 
 /**
@@ -208,21 +209,11 @@ class Lint extends TaskAbstract implements PathsInterface
     /**
      * Ensure the PHP command is available and that at least one path is defined.
      *
-     * @throws \Gasp\Exception
+     * @throws Exception
      */
     public function validate()
     {
-        if (!$this->php) {
-            throw new Exception('No php command defined.');
-        }
-
-        if (!file_exists($this->php)) {
-            throw new Exception("php command not found at: {$this->php}");
-        }
-
-        if (!is_executable($this->php)) {
-            throw new Exception('php command is not executable.');
-        }
+        Validate::checkExecutable($this->php, '\Gasp\Exception');
 
         if (!count($this->paths)) {
             throw new Exception('Cannot run lint task without any paths defined.');
