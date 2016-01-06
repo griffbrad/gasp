@@ -94,9 +94,7 @@ class Rsync extends TaskAbstract
             escapeshellarg($this->remotePath)
         );
 
-        return $this->gasp->exec()
-            ->setCmd($cmd)
-            ->run();
+        return $this->gasp->exec($cmd);
     }
 
     private function assembleAdditionalCmdArgs()

@@ -28,9 +28,7 @@ class Exec extends TaskAbstract
             escapeshellarg($this->cmd)
         );
 
-        return $this->gasp->exec()
-            ->setCmd($cmd)
-            ->run();
+        return $this->gasp->exec($cmd);
     }
 
     public function validate()

@@ -3,16 +3,16 @@
 namespace Gasp\Extension\Ssh;
 
 use Gasp\ClassMap as CoreClassMap;
+use Gasp\Extension\Ssh\Task\Exec as ExecTask;
 use Gasp\Validate;
 
 class ClassMap extends CoreClassMap
 {
     protected $classes = array(
-        'exec'  => '\Gasp\Extension\Ssh\Task\Exec',
         'rsync' => '\Gasp\Extension\Ssh\Task\Rsync'
     );
 
-    private $ssh;
+    private $ssh = '/usr/bin/ssh';
 
     private $host;
 
@@ -21,6 +21,17 @@ class ClassMap extends CoreClassMap
     private $privateKey;
 
     private $port = 22;
+
+    public function exec($cmd)
+    {
+        $task = new ExecTask();
+
+        return $task
+            ->setGasp($this->getGasp())
+            ->setClassMap($this)
+            ->setCmd($cmd)
+            ->run();
+    }
 
     public function setSsh($ssh)
     {

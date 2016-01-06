@@ -173,9 +173,7 @@ class Lint extends TaskAbstract implements PathsInterface
                     );
 
                     /* @var $execResult Result */
-                    $execResult = $this->gasp->exec()
-                        ->setCmd($cmd)
-                        ->run();
+                    $execResult = $this->gasp->exec($cmd);
 
                     if ($execResult->isFailure()) {
                         $failures += 1;

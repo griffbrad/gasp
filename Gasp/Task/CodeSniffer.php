@@ -214,7 +214,7 @@ class CodeSniffer extends TaskAbstract implements PathsInterface
             implode(' ', array_map('escapeshellarg', $this->paths))
         );
 
-        return $this->gasp->exec()->setCmd($cmd)->run();
+        return $this->gasp->exec($cmd);
     }
 
     /**

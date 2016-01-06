@@ -9,6 +9,7 @@
 namespace Gasp;
 
 use Gasp\Task\TaskInterface;
+use Gasp\Task\Exec as ExecTask;
 
 /**
  * This map ties all the built-in tasks to their API names.  You could register
@@ -25,10 +26,9 @@ class ClassMap
      * @var array
      */
     protected $classes = array(
-        'exec'    => '\Gasp\Task\Exec',
-        'lint'    => '\Gasp\Task\Lint',
-        'sniff'   => '\Gasp\Task\CodeSniffer',
-        'watch'   => '\Gasp\Task\Watch'
+        'lint'  => '\Gasp\Task\Lint',
+        'sniff' => '\Gasp\Task\CodeSniffer',
+        'watch' => '\Gasp\Task\Watch'
     );
 
     /**
@@ -95,6 +95,22 @@ class ClassMap
         return $this;
     }
 
+    public function getGasp()
+    {
+        return $this->gasp;
+    }
+
+    public function exec($cmd)
+    {
+        $task = new ExecTask();
+
+        return $task
+            ->setGasp($this->gasp)
+            ->setClassMap($this)
+            ->setCmd($cmd)
+            ->run();
+    }
+
     /**
      * Handle undefined methods by attempting to instantiate the task matching the
      * method name.
@@ -134,7 +150,7 @@ class ClassMap
     public function factory($name, array $args)
     {
         $name    = strtolower($name);
-        $options = (isset($args[0]) && is_array($args[0]) ? $args[0] : array());
+        $options = (isset($args[0]) && is_array($args[0]) ? $args[0] : []);
 
         foreach ($this->aliases as $command => $aliases) {
             if (array_key_exists($name, $aliases)) {

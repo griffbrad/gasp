@@ -140,9 +140,7 @@ class RunTests extends TaskAbstract
 
         $cmd = $this->classMap->getPhpunit() . ' ' . implode(' ', $args);
 
-        return $this->gasp->exec()
-            ->setCmd($cmd)
-            ->run();
+        return $this->gasp->exec($cmd);
     }
 
     protected function assembleMessage()
