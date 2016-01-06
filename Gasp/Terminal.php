@@ -8,8 +8,6 @@ class Terminal
 {
     private $isInteractive;
 
-    private $envVars;
-
     public function token($content)
     {
         return new Token($this, $content);
