@@ -65,6 +65,7 @@ class Run
      *
      * @param ClassMap $classMap
      * @param string $workingDirectory
+     * @throws Exception
      */
     public function __construct(ClassMap $classMap = null, $workingDirectory = null)
     {
@@ -184,6 +185,12 @@ class Run
         }
 
         $this->displayOutput($result);
+
+        if ($result->isFailure()) {
+            exit(1);
+        } else {
+            exit(0);
+        }
     }
 
     /**
@@ -301,7 +308,7 @@ class Run
         $method = strtolower($method);
 
         if (!isset($this->classMaps[$method])) {
-            return $this->classMaps['default']->$method($args);
+            return call_user_func_array([$this->classMaps['default'], $method], $args);
         } else {
             $options = (isset($args[0]) && is_array($args[0]) ? $args[0] : array());
 
