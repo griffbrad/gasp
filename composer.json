@@ -9,7 +9,7 @@
         }
     },
     "require": {
-        "nielsradstake/php-codesniffer": "1.*",
+        "squizlabs/php_codesniffer": "1.*",
         "php": ">=5.4.0",
         "phpdocumentor/phpdocumentor": "2.*",
         "phpunit/dbunit": "1.*",
