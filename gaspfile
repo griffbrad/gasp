@@ -2,8 +2,6 @@
 
 /* @var $gasp Gasp\Run */
 
-use Gasp\Result\Aggregate;
-
 $gasp->sniff()
     ->setPhpcs('./vendor/bin/phpcs')
     ->setStandard('PSR2')
