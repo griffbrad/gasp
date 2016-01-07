@@ -1,6 +1,22 @@
 #!/usr/bin/env php
 <?php
 
-require_once 'vendor/autoload.php';
+/**
+ * Depending upon whether Gasp is installed via composer or its repository is cloned directly
+ * for Gasp development, we'll find the autoload in different locations relative to the Gasp
+ * executable.
+ */
+
+$installedAutoload = __DIR__ . '/../autoload.php';
+$gaspDevAutoload   = __DIR__ . '/../vendor/autoload.php';
+
+if (file_exists($installedAutoload)) {
+
+} elseif (file_exists($gaspDevAutoload)) {
+    require_once $gaspDevAutoload;
+} else {
+    throw new Exception('Could not find Composer autoload.');
+}
+
 $gasp = new Gasp\Run();
 $gasp->run();
