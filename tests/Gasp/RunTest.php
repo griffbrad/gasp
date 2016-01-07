@@ -45,11 +45,11 @@ class RunTest extends \PHPUnit_Framework_TestCase
     {
         $classMap = new ClassMap();
 
-        // If our custom class map is used, exec() will return Lint instead of Exec
-        $classMap->register('exec', '\Gasp\Task\Lint');
+        // If our custom class map is used, sniff() will return Lint instead of CodeSniffer
+        $classMap->register('sniff', '\Gasp\Task\Lint');
 
         $run = new Run($classMap);
-        $this->assertInstanceOf('\Gasp\Task\Lint', $run->exec());
+        $this->assertInstanceOf('\Gasp\Task\Lint', $run->sniff());
     }
 
     public function testsAllValidGaspFilesAreAccepted()
