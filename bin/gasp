@@ -7,11 +7,11 @@
  * executable.
  */
 
-$installedAutoload = __DIR__ . '/../autoload.php';
+$installedAutoload = __DIR__ . '/../../../autoload.php';
 $gaspDevAutoload   = __DIR__ . '/../vendor/autoload.php';
 
 if (file_exists($installedAutoload)) {
-
+    require_once $installedAutoload;
 } elseif (file_exists($gaspDevAutoload)) {
     require_once $gaspDevAutoload;
 } else {
