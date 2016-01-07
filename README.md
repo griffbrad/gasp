@@ -13,7 +13,7 @@ own with a simple callback.
 Installation
 ------------
 
-You'll first install Gasp via composer.  Add it to your composer.json's 
+You'll first install Gasp via composer.  Add it to your composer.json's
 require-dev section:
 
     {
@@ -97,9 +97,7 @@ a result based upon the exit status of the program:
     <?php
 
     $gasp->task('date', function () use ($gasp) {
-        return $gasp->exec()
-            ->setCmd('date')
-            ->run();
+        return $gasp->exec('date');
     });
 
 
