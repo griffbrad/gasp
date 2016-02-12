@@ -11,7 +11,9 @@
     "require": {
         "squizlabs/php_codesniffer": "1.*",
         "php": ">=5.4.0",
-        "phpdocumentor/phpdocumentor": "2.*",
+        "phpdocumentor/phpdocumentor": "2.*"
+    },
+    "require-dev": {
         "phpunit/dbunit": "1.*",
         "phpunit/phpunit": "3.*",
         "phpunit/phpunit-mock-objects": "1.*"
