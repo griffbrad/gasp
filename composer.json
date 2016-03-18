@@ -14,8 +14,8 @@
         "phpdocumentor/phpdocumentor": "2.*"
     },
     "require-dev": {
-        "phpunit/dbunit": "1.*",
-        "phpunit/phpunit": "3.*",
-        "phpunit/phpunit-mock-objects": "1.*"
+        "phpunit/dbunit": "2.*",
+        "phpunit/phpunit": "4.*",
+        "phpunit/phpunit-mock-objects": "2.*"
     }
 }
